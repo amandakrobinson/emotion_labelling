@@ -470,7 +470,7 @@ async function uploadToOSF() {
   if (!OSF_TOKEN || OSF_TOKEN === 'PASTE_YOUR_OSF_TOKEN_HERE') return;
 
   try {
-    const filename = `sub-${participantId}_${SESSION_TS}.csv`;
+    const filename = `sub-${participantId}.csv`;
     const csv      = resultsToCSV();
     const headers  = {
       'Authorization': `Bearer ${OSF_TOKEN}`,
