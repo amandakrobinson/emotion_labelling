@@ -389,6 +389,7 @@ const SONA_COMPLETION_URL = '';
 // ─────────────────────────────────────────────
 let participantId = '';
 let baseImages    = [];
+let blockSize     = 0;   // set after images load = baseImages.length
 let trialImages   = [];
 let totalTrials   = 0;
 let results       = [];
@@ -538,12 +539,16 @@ async function loadImages() {
   if (!Array.isArray(baseImages) || baseImages.length === 0) {
     throw new Error(`${IMAGES_JSON} must contain an array of image filenames.`);
   }
+
+  // Validate block size is consistent
+  console.log(`Loaded ${baseImages.length} images — ${REPEATS_PER_IMG} blocks of ${baseImages.length} = ${baseImages.length * REPEATS_PER_IMG} trials total.`);
 }
 
 async function initialiseExperiment() {
   const saved = loadFromStorage();
 
   await loadImages();
+  blockSize = baseImages.length; // lock in block size once, used everywhere
 
   if (saved && saved.results && saved.trialImages && saved.currentIdx < saved.trialImages.length) {
     participantId = saved.participantId;
@@ -570,7 +575,6 @@ async function initialiseExperiment() {
 // ─────────────────────────────────────────────
 function showTrial(idx) {
   const image = trialImages[idx];
-  const blockSize = baseImages.length;                        // 96
   const trialInBlock = (idx % blockSize) + 1;
 
   acceptingResponse = true;
@@ -606,7 +610,6 @@ function submitResponse(key) {
   saveToStorage();
   uploadToOSF();
 
-  const blockSize = baseImages.length; // 96
   const endOfBlock = currentIdx % blockSize === 0;
 
   if (currentIdx >= trialImages.length) {
