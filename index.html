@@ -250,6 +250,7 @@
 <body>
 <div id="app">
 
+  <!-- CONSENT PART 1: Information sheet -->
   <div id="screen-consent" class="screen info-screen active">
     <h1>Pre-experiment Information</h1>
     <h2>Object recognition in the brain and behaviour</h2>
@@ -268,33 +269,50 @@
 
     <p><strong>What is this research about?</strong></p>
     <p>This experiment is part of a project examining the neural processes underlying visual object recognition and their relationship to behaviour.</p>
-    <p>You will be asked to undertake a simple behavioural task that will measure your perception and cognition. This may involve you watching simple visual stimuli on a computer display and listening to sounds over speakers or headphones. While you do this experiment, you will be seated at a desk and your keyboard presses and/or mouse movements will be recorded. You will need to do this experiment at a computer or laptop, not a mobile phone or tablet. You may also be asked to complete questionnaires relating to visual perception and handedness.</p>
+    <p>You will be asked to undertake a simple behavioural task that will measure your perception and cognition. This may involve you watching simple visual stimuli on a computer display (e.g., coloured objects) and listening to sounds over speakers or headphones (e.g., low- or high-pitched tones). While you do this experiment, you will be seated at a desk and your keyboard presses and/or mouse movements will be recorded. You will need to do this experiment at a computer or laptop, not a mobile phone or tablet. You may also be asked to complete questionnaires relating to visual perception and handedness.</p>
 
     <p><strong>Your consent</strong></p>
-    <p>Your participation is entirely voluntary. Once the experiment begins, you can choose to withdraw from the experiment at any time, without explanation or penalty. If you decide to withdraw from the experiment, please exit from the experiment by closing the browser window, and the experiment will be terminated. If you withdraw, your information will not be used.</p>
+    <p>Your participation is entirely voluntary. Once the experiment begins, you can choose to withdraw from the experiment at any time, without explanation or penalty. If you decide to withdraw from the experiment, please exit from the experiment (e.g., by closing the browser window), and the experiment will be terminated. If you withdraw, your information will not be used.</p>
     <p>We will not disclose any identifying information about you, or provided by you during the research, without your written permission or as required by law. Fully anonymised data may be made available on public databases for use by other researchers.</p>
 
     <p><strong>What are the possible risks of taking part?</strong></p>
-    <p>This experiment will involve looking at a computer monitor for up to an hour. There is a slight risk of fatigue, and you will be given breaks in between trials. The risks are barely above those of everyday life, like watching a movie or playing a video game.</p>
+    <p>This experiment will involve looking at a computer monitor for up to an hour. There is a slight risk of fatigue, you will be given breaks in between trials. The risks are barely above those of everyday life, like watching a movie or playing a video game.</p>
 
     <p><strong>What are the possible benefits of taking part?</strong></p>
     <p>You will not receive direct health or other benefits from participation in this study. The data you provide, however, will help us to advance scientific understanding of how the brain regulates perception and cognition. You will receive payment for each hour of participation. If you would like to be informed of the results of this study, please contact project staff.</p>
 
     <p>This study adheres to the Guidelines of the ethical review process of The University of Queensland and the National Statement on Ethical Conduct in Human Research. You are free to discuss your participation in this study with project staff (Dr Amanda Robinson, contactable on a.robinson4@uq.edu.au), and if you would like to speak to an officer of the University not involved in the study, you may contact the Ethics Coordinators on +617 3365 3924 / +617 3443 1656 or email humanethics@research.uq.edu.au.</p>
 
-    <p>If you have not understood any of the preceding information, please tell the experimenter and they will explain. If you have read and understood all of this information, please click the proceed button below.</p>
+    <p>If you have not understood any of the preceding information, please tell the experimenter and they will explain. If you have read and understood all of this information, please click on the proceed button below.</p>
 
     <button id="info-proceed-btn" class="btn-primary">Proceed</button>
   </div>
 
-  <div id="screen-pid" class="screen info-screen">
-    <h1>Face Emotion Recognition Study</h1>
-    <h2>Before you begin</h2>
-    <p>Please enter your student number below.</p>
-    <input type="text" id="pid-input" class="text-input" placeholder="e.g. s1234567" autocomplete="off">
-    <br>
-    <button id="pid-btn" class="btn-primary" disabled>Continue</button>
+  <!-- CONSENT PART 2: Consent checklist -->
+  <div id="screen-consent2" class="screen info-screen">
+    <h1>Pre-experiment Information</h1>
+    <h2>Object recognition in the brain and behaviour</h2>
+
+    <ul>
+      <li>I have read all the preceding information for Participants in this study, and any questions I had have been answered to my satisfaction.</li>
+      <li>I agree to participate in this study, with the understanding that:
+        <ul style="margin-top:8px; margin-bottom:0;">
+          <li>My participation is voluntary</li>
+          <li>My contribution is anonymous</li>
+          <li>Information concerning my identity will not be collected, and</li>
+          <li>I may withdraw at any time without penalty or explanation</li>
+        </ul>
+      </li>
+      <li>I agree that the anonymous research data collected for the study may be published, or presented at conferences at a later date.</li>
+      <li>My non-identifiable data may be used in future research that is an extension of or related to this project.</li>
+      <li>My non-identifiable data may be used in any future research or shared with external researchers.</li>
+    </ul>
+
+    <p>By activating the <strong>Proceed</strong> button below I am agreeing to the above and to participate in this study.</p>
+
+    <button id="consent2-proceed-btn" class="btn-primary">Proceed</button>
   </div>
+
 
   <div id="screen-instructions" class="screen info-screen">
     <h1>Face Emotion Recognition Study</h1>
@@ -317,7 +335,7 @@
     <div class="progress-bar-outer">
       <div class="progress-bar-inner" id="progress-bar"></div>
     </div>
-    <div class="trial-header">Image <span id="trial-num"></span> of <span id="trial-total"></span></div>
+    <div class="trial-header">Block <span id="trial-block"></span> of 4 &nbsp;·&nbsp; Image <span id="trial-num"></span> of <span id="trial-total"></span></div>
 
     <div class="image-frame">
       <img id="trial-img" src="" alt="face stimulus">
@@ -330,6 +348,14 @@
     </div>
 
     <div class="waiting-msg">Waiting for response</div>
+  </div>
+
+  <div id="screen-break" class="screen info-screen">
+    <h1>Take a break.</h1>
+    <h2 id="break-subtitle"></h2>
+    <p id="break-msg"></p>
+    <p>Your progress has been saved. Take as long as you need.</p>
+    <button id="break-continue-btn" class="btn-primary">Continue</button>
   </div>
 
   <div id="screen-end" class="screen info-screen">
@@ -351,8 +377,12 @@ const IMAGES_JSON     = 'images.json';
 const REPEATS_PER_IMG = 4;
 const STORAGE_KEY     = 'face_emotion_recognition_data';
 
-const OSF_TOKEN       = 'PASTE_YOUR_OSF_TOKEN_HERE';
-const OSF_PROJECT     = 'h2snj';
+const OSF_TOKEN       = 'Xl5wNzjXbklJaCekjfdrWxPAwfZSVokauWmAWzJhRK58I7Ma9xyiBmPR1tsyG101VHUonJ';
+const OSF_PROJECT     = 'zp4rv';
+
+// SONA: paste your completion URL here, with survey_code= at the end (no value after =)
+// e.g. 'https://uq.sona-systems.com/webstudy_credit.aspx?experiment_id=XXXX&credit_token=YYYY&survey_code='
+const SONA_COMPLETION_URL = '';
 
 // ─────────────────────────────────────────────
 // STATE
@@ -363,6 +393,7 @@ let trialImages   = [];
 let totalTrials   = 0;
 let results       = [];
 let currentIdx    = 0;
+let currentBlock  = 1;
 let acceptingResponse = false;
 let trialStartTime = 0;
 const SESSION_TS  = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
@@ -374,6 +405,18 @@ const RESPONSE_MAP = {
 };
 
 // ─────────────────────────────────────────────
+// SONA ID DETECTION
+// ─────────────────────────────────────────────
+function getIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id') || params.get('survey_code') || null;
+}
+
+function generateFallbackId() {
+  return 'anon_' + Math.random().toString(36).slice(2, 9);
+}
+
+// ─────────────────────────────────────────────
 // STORAGE
 // ─────────────────────────────────────────────
 function saveToStorage() {
@@ -381,7 +424,8 @@ function saveToStorage() {
     participantId,
     trialImages,
     results,
-    currentIdx
+    currentIdx,
+    currentBlock
   }));
 }
 
@@ -401,7 +445,7 @@ function clearStorage() {
 // ─────────────────────────────────────────────
 // CSV HELPERS
 // ─────────────────────────────────────────────
-const CSV_COLS = ['participant_id', 'image', 'response', 'key', 'rt_ms'];
+const CSV_COLS = ['participant_id', 'block', 'image', 'response', 'key', 'rt_ms'];
 
 function resultsToCSV() {
   const header = CSV_COLS.join(',');
@@ -475,11 +519,12 @@ function shuffle(arr) {
 }
 
 function makeTrialList(images) {
+  // 4 blocks, each containing all images once, independently shuffled
   const trials = [];
-  for (let r = 0; r < REPEATS_PER_IMG; r++) {
-    trials.push(...images);
+  for (let b = 0; b < REPEATS_PER_IMG; b++) {
+    trials.push(...shuffle(images));
   }
-  return shuffle(trials);
+  return trials;
 }
 
 // ─────────────────────────────────────────────
@@ -505,12 +550,12 @@ async function initialiseExperiment() {
     trialImages = saved.trialImages;
     results = saved.results;
     currentIdx = saved.currentIdx;
+    currentBlock = saved.currentBlock || 1;
 
     document.getElementById('resume-banner').style.display = 'block';
-    document.getElementById('resume-banner').textContent = `Resuming ${participantId}: ${results.length} responses already saved.`;
-    document.getElementById('pid-input').value = participantId;
-    document.getElementById('pid-btn').disabled = false;
+    document.getElementById('resume-banner').textContent = `Resuming session: ${results.length} responses already saved.`;
   } else {
+    participantId = getIdFromURL() || generateFallbackId();
     trialImages = makeTrialList(baseImages);
     results = [];
     currentIdx = 0;
@@ -525,14 +570,16 @@ async function initialiseExperiment() {
 // ─────────────────────────────────────────────
 function showTrial(idx) {
   const image = trialImages[idx];
-  const overallNum = idx + 1;
+  const blockSize = baseImages.length;                        // 96
+  const trialInBlock = (idx % blockSize) + 1;
 
   acceptingResponse = true;
   trialStartTime = Date.now();
 
-  document.getElementById('progress-bar').style.width = `${Math.round((overallNum - 1) / totalTrials * 100)}%`;
-  document.getElementById('trial-num').textContent = overallNum;
-  document.getElementById('trial-total').textContent = totalTrials;
+  document.getElementById('progress-bar').style.width = `${Math.round(idx / totalTrials * 100)}%`;
+  document.getElementById('trial-block').textContent = currentBlock;
+  document.getElementById('trial-num').textContent = trialInBlock;
+  document.getElementById('trial-total').textContent = blockSize;
   document.getElementById('trial-img').src = IMAGE_FOLDER + image;
 
   showScreen('screen-trial');
@@ -548,6 +595,7 @@ function submitResponse(key) {
   const rt = Date.now() - trialStartTime;
   results.push({
     participant_id: participantId,
+    block: currentBlock,
     image: trialImages[currentIdx],
     response: RESPONSE_MAP[key],
     key: key,
@@ -558,11 +606,27 @@ function submitResponse(key) {
   saveToStorage();
   uploadToOSF();
 
-  if (currentIdx < trialImages.length) {
-    showTrial(currentIdx);
-  } else {
+  const blockSize = baseImages.length; // 96
+  const endOfBlock = currentIdx % blockSize === 0;
+
+  if (currentIdx >= trialImages.length) {
     finishExperiment();
+  } else if (endOfBlock) {
+    currentBlock++;
+    saveToStorage();
+    showBreak();
+  } else {
+    showTrial(currentIdx);
   }
+}
+
+function showBreak() {
+  document.getElementById('save-btn').style.display = 'none';
+  document.getElementById('break-subtitle').textContent =
+    `Block ${currentBlock - 1} of ${REPEATS_PER_IMG} complete`;
+  document.getElementById('break-msg').textContent =
+    `${REPEATS_PER_IMG - (currentBlock - 1)} block${REPEATS_PER_IMG - (currentBlock - 1) === 1 ? '' : 's'} remaining.`;
+  showScreen('screen-break');
 }
 
 function finishExperiment() {
@@ -570,35 +634,35 @@ function finishExperiment() {
   document.getElementById('save-btn').style.display = 'none';
   document.getElementById('progress-bar').style.width = '100%';
   uploadToOSF();
-  
   clearStorage();
+
+  // Redirect to SONA for credit if a completion URL is configured
+  if (SONA_COMPLETION_URL) {
+    setTimeout(() => {
+      window.location.href = SONA_COMPLETION_URL + encodeURIComponent(participantId);
+    }, 3000);
+    document.querySelector('#screen-end p').textContent =
+      'Your responses have been saved. Thank you for participating. You will be redirected to SONA shortly to receive your credit.';
+  }
 }
 
 // ─────────────────────────────────────────────
 // EVENT LISTENERS
 // ─────────────────────────────────────────────
 document.getElementById('info-proceed-btn').addEventListener('click', () => {
-  showScreen('screen-pid');
+  showScreen('screen-consent2');
 });
 
-const pidInput = document.getElementById('pid-input');
-const pidBtn   = document.getElementById('pid-btn');
-
-pidInput.addEventListener('input', () => {
-  pidBtn.disabled = pidInput.value.trim().length === 0;
-});
-
-pidInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && pidInput.value.trim().length > 0) pidBtn.click();
-});
-
-pidBtn.addEventListener('click', () => {
-  participantId = pidInput.value.trim();
+document.getElementById('consent2-proceed-btn').addEventListener('click', () => {
   saveToStorage();
   showScreen('screen-instructions');
 });
 
 document.getElementById('begin-btn').addEventListener('click', () => {
+  showTrial(currentIdx);
+});
+
+document.getElementById('break-continue-btn').addEventListener('click', () => {
   showTrial(currentIdx);
 });
 
